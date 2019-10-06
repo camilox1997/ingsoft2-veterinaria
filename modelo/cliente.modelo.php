@@ -41,8 +41,8 @@ class Cliente{
         $consultaPreparada = $this->conexion->prepare($this->consulta);
         $consultaPreparada->bindParam(':identificacion', $identificacion, PDO::PARAM_LOB);
         $consultaPreparada->execute();
-        $rows = $consultaPreparada->rowCount();
-        if($rows > 0) return true;
+        $filasAfectadasPorConsulta = $consultaPreparada->rowCount();
+        if($filasAfectadasPorConsulta > 0) return true;
         else return false;
         $this->conexion = Conexion::closeConexion();
     }
@@ -52,8 +52,8 @@ class Cliente{
         $this->conexion = Conexion::getConexion();
         $consultaPreparada = $this->conexion->prepare($this->consulta);
         $consultaPreparada->execute();
-        $rows = $consultaPreparada->rowCount();
-        if($rows>0) return $consultaPreparada->fetchAll();
+        $filasAfectadasPorConsulta = $consultaPreparada->rowCount();
+        if($filasAfectadasPorConsulta > 0) return $consultaPreparada->fetchAll();
         else return null;
         $this->conexion = Conexion::closeConexion();
     }
