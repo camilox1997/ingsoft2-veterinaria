@@ -1,0 +1,15 @@
+el controlador se coneca con la vista y obtiene todos los datos que manda ella.
+
+y a su ves el controlador despues de obtener los datos llama a las instancias de los metodos
+del modelo.
+
+el modelo tiene toda la parte logica de dicho modulo a trabajar
+
+
+el index solo llamara la mi pagina de incio
+
+y desde mi pagina de incio redireccionare a cada una de mis vistas.
+
+y cada vista se estaran enlazadas una de la otra. sin tocar mas el index.
+
+el controlador no debe tener ningun codigo html o java script
