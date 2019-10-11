@@ -1,4 +1,5 @@
 <?php
+
 require_once './configuracion/conexion.php'; // posible mente este mal includa la conexion
 
 class Cliente{
@@ -11,7 +12,7 @@ class Cliente{
             
             $this->consulta = "INSERT INTO Persona(identificacion, nombre, apellido, direccion, telefono, username, pass, tipo) VALUES (:identificacion, :nombre, :apellido, :direccion, :telefono, :username, :pass, :tipo)";
             
-            if(issetCliente($identificacion)) {
+            if($this->getCliente($identificacion) != null) {
                 $this->conexion = Conexion::getConexion();
                 $consultaPreparada = $this->conexion->prepare($this->consulta);
                 $consultaPreparada->bindParam(':identificacion',$identificacion,PDO::PARAM_LOB);
@@ -24,27 +25,16 @@ class Cliente{
                 $consultaPreparada->bindParam(':tipo',$tipo,PDO::PARAM_STR);
                 
                 if($consultaPreparada->execute()){
-                    return 'Registro Exitoso';
+                    $respuesta = 'Registro Exitoso';
                 }
                 $this->conexion = Conexion::closeConexion();
             } else {
-                return 'Este registro ya existe';
+                $respuesta = 'Este registro ya existe';
             }
+            return $respuesta;
         } catch(PDOException $e) {
             die('Error al registrar -> '.$e->getMessage());
         }
-    }
-
-    public function issetCliente($identificacion) {
-        $this->consulta = "SELECT identificacion FROM Persona WHERE identificacion = :identificacion";
-        $this->conexion = Conexion::getConexion();
-        $consultaPreparada = $this->conexion->prepare($this->consulta);
-        $consultaPreparada->bindParam(':identificacion', $identificacion, PDO::PARAM_LOB);
-        $consultaPreparada->execute();
-        $filasAfectadasPorConsulta = $consultaPreparada->rowCount();
-        if($filasAfectadasPorConsulta > 0) return true;
-        else return false;
-        $this->conexion = Conexion::closeConexion();
     }
 
     public function getClientes(){
@@ -53,8 +43,9 @@ class Cliente{
         $consultaPreparada = $this->conexion->prepare($this->consulta);
         $consultaPreparada->execute();
         $filasAfectadasPorConsulta = $consultaPreparada->rowCount();
-        if($filasAfectadasPorConsulta > 0) return $consultaPreparada->fetchAll();
-        else return null;
+        if($filasAfectadasPorConsulta > 0) $respuesta = $consultaPreparada->fetchAll();
+        else $respuesta = null;
+        return $respuesta;
         $this->conexion = Conexion::closeConexion();
     }
 
@@ -65,8 +56,9 @@ class Cliente{
         $consultaPreparada->bindParam(':identificacion', $identificacion, PDO::PARAM_LOB);
         $consultaPreparada->execute();
         $rows = $consultaPreparada->rowCount();
-        if($rows > 0) return $consultaPreparada->fetchAll();
-        else return null;
+        if($rows > 0) $respuesta = $consultaPreparada->fetchAll();
+        else $respuesta = null;
+        return $respuesta;
         $this->conexion = Conexion::closeConexion();
     }
 
@@ -82,8 +74,9 @@ class Cliente{
             $consultaPreparada->bindParam(':telefono', $telefono, PDO::PARAM_LOB);
             $consultaPreparada->bindParam(':username', $username, PDO::PARAM_STR);
             $consultaPreparada->bindParam(':pass', $pass, PDO::PARAM_STR);
-            if($consultaPreparada->execute()) return true;
-            else return false;
+            if($consultaPreparada->execute()) $respuesta = true;
+            else $respuesta = false;
+            return $respuesta;
             $this->conexion = Conexion::closeConexion();
         } catch (PDOException $e){
             die('Error actualizar -> '.$e->getMessage());
@@ -96,8 +89,9 @@ class Cliente{
             $this->conexion =  Conexion::getConexion();
             $consultaPreparada = $this->conexion->prepare($this->consulta);
             $consultaPreparada->bindParam(':identificacion', $identificacion, PDO::PARAM_LOB);
-            if($consultaPreparada->execute()) return true;
-            else return false;
+            if($consultaPreparada->execute()) $respuesta = true;
+            else $respuesta = false;
+            return $respuesta;
             $this->conexion = Conexion::closeConexion();
         } catch(PDOException $e) {
             die('Error eliminar -> '.$e->getMessage());
