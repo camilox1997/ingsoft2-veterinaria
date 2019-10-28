@@ -1,0 +1,152 @@
+body{
+    background: #f4f4f4;
+}
+
+/*navbar*/
+
+/*principal nav*/
+#navlimpio{
+    background: purple;
+    border: 10px !important;
+    padding: 10px;
+}
+
+footer{
+    background: #f4f4f4;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+    margin: 0px;
+}
+
+.navbar{
+    background: #f4f4f4;
+    font-style: normal !important;
+    
+}
+
+.nav-item > a{
+    font-size: 20px;
+    margin: 0px;
+    color: purple !important;
+    text-decoration: none !important;
+    font-style: inherit;
+}
+
+.nav-item > a:hover{
+    color: deeppink !important;
+}
+
+.nav-item > a:active{
+    color: blue !important;
+}
+
+.navbar-nav > a{
+    font-size: 20px;
+    margin: 0px !important;
+    border-top: 0px;
+    color: purple !important;
+    text-decoration: none !important;
+    font-style: inherit;
+
+}
+
+#sesionid{
+    
+}
+
+.navbar-nav > a:hover{
+    color: deeppink !important;
+}
+.navbar-nav > a:active{
+    color: blue !important;
+}
+#logo{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-radius: 0px;
+    height: 90px;
+    width: 100px;
+}
+
+/*fin navbar*/
+
+/*carouser*/
+
+.carousel{
+    padding-top: 0px !important;
+    margin: 0px !important;
+    background: transparent !important;
+}
+
+hr{
+    background: purple;
+    margin-top: 10px;
+    padding: 2px;
+}
+
+.jumbotron > h1{
+    border-radius: 0px;
+    margin-top: 10px;
+    color: purple;
+}
+
+.card-body > h5{
+    color: purple !important;
+}
+
+ion-icon{
+    color: purple !important;
+}
+
+.card > img{
+    width: 50%;
+    padding: 0px;
+    margin: auto;
+}
+
+/*login*/
+
+.login-container{
+    height: 100vh;
+    width: 100%;
+}
+
+.login-form > h1{
+    color: purple !important;
+}
+
+.bd-placeholder-img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.login-form{
+    max-width: 100%;
+    width: 370px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-control{
+    font-size: 15px;
+    min-height: 48px;
+    font-weight: 500;
+}
+
+.btn-custon {
+   background: purple !important;
+   font-size: 20px; 
+}
+
+.btn-custon:focus,
+.btn-custon:hover,
+.btn-custon:active,
+.btn-custon:active:focus{
+    background: #54229d !important;
+    border-color: #54229d !important;
+    color: #fff !important;
+}
+/*fin login*/
