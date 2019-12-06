@@ -9,7 +9,7 @@ class UsuarioController extends ControladorBase{
         $usuario=new Usuario();
         $allusers=$usuario->getAllUsers();
 
-        $this->view("index", array(
+        $this->view("adminusergestion", array(
             "allusers"=>$allusers,
             "Hola"=>"Clinica veterinaria como reyes"
         ));
@@ -22,9 +22,10 @@ class UsuarioController extends ControladorBase{
             $identificacion = $_POST["identificacion"];
             $nombre = $_POST["nombre"];
             $apellido = $_POST["apellido"];
+            $direccion = $_POST["direccion"];
             $telefono = $_POST["telefono"];
             $usuername = $_POST["username"];
-            $pass = sha1($_POST["pass"]);
+            $pass = $_POST["pass"];
             $tipo = $_POST["tipo"];
 
             $usuario->setIdentificacion($identificacion);
@@ -39,17 +40,46 @@ class UsuarioController extends ControladorBase{
             $save = $usuario->save();
         }
 
-        $this->redirect("Usuario","index");
+        if(!$update==null){
+            $this->redirect("Usuario", "index");
+        }
     }
 
+    public function editar(){
+        if(isset($_GET["id"])){
+            $usuario=new Usuario();
+            
+            $identificacion = $_POST["identificacion"];
+            $nombre = $_POST["nombre"];
+            $apellido = $_POST["apellido"];
+            $direccion = $_POST["direccion"];
+            $telefono = $_POST["telefono"];
+
+            $usuario->setIdentificacion($identificacion);
+            $usuario->setNombre($nombre);
+            $usuario->setApellido($apellido);
+            $usuario->setDireccion($direccion);
+            $usuario->setTelefono($telefono);
+
+            $update = $usuario->update();
+        }
+
+        if(!$update==null){
+            $this->redirect("Usuario", "index");
+        }
+    }
+
+    
     public function borrar(){
         if(isset($_GET["identificacion"])){
             $identificacion = long2ip($_GET["identificacion"]);
 
             $usuario = new Usuario();
-            $usuario->deleteByIdentified($identificacion);
+            $delete = $usuario->deleteByIdentified($identificacion);
 
-            $this->redirect();
+            if (!$delete==null){
+                $this->redirect("Usuario", "index");
+            }
         }
     }
 }

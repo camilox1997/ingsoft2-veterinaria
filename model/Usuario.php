@@ -87,5 +87,15 @@ class Usuario extends EntidadBase{
         $save=$this->db()->query($query);
         return $save;
     }
+
+    public function update(){
+        $query="UPDATE Usuario SET nombre='$this->nombre',
+                                   apellido='$this->apellido',
+                                   direccion='$this->direccion',
+                                   telefono='$this->telefono'
+                                   WHERE identificacion=$this->identificacion";
+        $update=$this->db()->query($query);
+        return $update;
+    }
 }
 ?>

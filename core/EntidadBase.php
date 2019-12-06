@@ -48,7 +48,7 @@ class EntidadBase{
     }
 
     public function getByIdentified($identification){
-        $query = $this->db->query("SELECT * FROM $this->table WHERE identificacion=$identification");
+        $query = $this->db->query("SELECT * FROM $this->table WHERE identificacion='$identification'");
 
         if($row=$query->fetch(PDO::FETCH_OBJ)){
             $resultSet=$row;

@@ -18,21 +18,37 @@ class LoginController extends ControladorBase{
         $username=$_POST["username"];
         $password=$_POST["password"];
         
-
-        var_dump($usuario->getAllUsers());
         foreach($allusers as $user){
             if($user->username==$username)if($user->pass==$password){
                 $validateuser=array("username" => $username, "tipo" => $user->tipo);
+                break;
+            } else {
+                $validateuser = null;
             }
         }
 
-        if($validateuser["tipo"] == "admin"){
-            
-            echo '<script>alert("administrador")</script>';
-            
+        if($validateuser != null){
+            session_start();
+
+            $_SESSION['user'] = $validateuser;
+
+            if($_SESSION['user']['tipo']=="admin"){
+                $this->redirect("Administrador","index");
+            } 
+        } else {
+            //falta complementos
+            $this->redirect("Login", "index");
         }
+    }
 
+    public function salir(){
+        session_start();
 
+        session_unset();
+
+        session_destroy();
+        
+        $this->redirect("Principal", "index");
     }
 
 }

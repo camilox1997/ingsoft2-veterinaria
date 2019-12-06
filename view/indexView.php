@@ -1,3 +1,14 @@
+<?/*php session_start();
+if(isset($_SESSION['user'])){
+    require_once 'core/ControladorBase.php';
+    $controlador = new ControladorBase();
+    if($_SESSION['user']['tipo'] == 'admin')
+        $controlador->redirect("Administrador", "index");
+    elseif($_SESSION['user']['tipo'] == 'cliente'){
+        $controlador->redirect("Cliente", "index");
+    }
+} else {*/
+?>
 <html>
     <head>
         <?php require_once 'view/module/headers.php';?>
@@ -89,3 +100,4 @@
         <?php require_once 'view/module/endBody.php'; ?>
     </body>
 </html>
+<?php/* } */?>
