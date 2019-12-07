@@ -29,7 +29,20 @@ class EntidadBase{
     }
 
     public function getAllUsers(){
-        $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion DESC"); 
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion ASC"); 
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+        return $resultSet;
+    }
+    
+    public function getUsersPagination($page){
+        $cont = 0;
+        if($page!=0){
+            $cont = ($page-1)*3;
+        }
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion ASC LIMIT $cont,3"); 
         $resultSet = array();
         while($row = $query->fetch(PDO::FETCH_OBJ)){
             $resultSet[] = $row;
@@ -39,7 +52,6 @@ class EntidadBase{
 
     public function getById($id){
         $query = $this->db->query("SELECT * FROM $this->table WHERE id=$id");
-
         if($row=$query->fetch(PDO::FETCH_OBJ)){
             $resultSet=$row;
         }
@@ -48,8 +60,7 @@ class EntidadBase{
     }
 
     public function getByIdentified($identification){
-        $query = $this->db->query("SELECT * FROM $this->table WHERE identificacion='$identification'");
-
+        $query = $this->db->query("SELECT * FROM $this->table WHERE identificacion=$identification");
         if($row=$query->fetch(PDO::FETCH_OBJ)){
             $resultSet=$row;
         }

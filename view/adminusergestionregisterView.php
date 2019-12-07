@@ -91,7 +91,7 @@ if(isset($_SESSION['user'])){
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="tipo" value="lwx">
+                <input type="hidden" name="tipo" value="lx">
                 <input class="btn btn-primary" type="submit" value="Registrar">
             </form>
         <?php require_once 'view/module/endBody.php'?>

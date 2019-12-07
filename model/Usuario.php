@@ -73,7 +73,7 @@ class Usuario extends EntidadBase{
     }
 
     public function save(){
-        $query="INSERT INTO Usuario(identificacion, nombre, apellido, direccion, telefono, username, pass, tipo)"
+        $query="INSERT INTO $this->table(identificacion, nombre, apellido, direccion, telefono, username, pass, tipo)"
                             . "VALUES ('"
                             . $this->identificacion."','"
                             . $this->nombre."','"
@@ -89,7 +89,7 @@ class Usuario extends EntidadBase{
     }
 
     public function update(){
-        $query="UPDATE Usuario SET nombre='$this->nombre',
+        $query="UPDATE $this->table SET nombre='$this->nombre',
                                    apellido='$this->apellido',
                                    direccion='$this->direccion',
                                    telefono='$this->telefono'

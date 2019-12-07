@@ -28,7 +28,7 @@
                 <a class="nav-link">Principal</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?controller=Usuario">Usuario</a>
+                <a class="nav-link" href="<?php echo $helper->url("Administrador","getUsers");?>">Usuario</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Mascotas</a>
