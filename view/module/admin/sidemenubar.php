@@ -31,10 +31,10 @@
                 <a class="nav-link" href="<?php echo $helper->url("Administrador","getUsers");?>">Usuario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Mascotas</a>
+                <a class="nav-link" href="<?php echo $helper->url("Mascota","getMascotas");?>" >Mascotas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Raza</a>
+                <a class="nav-link" href="<?php echo $helper->url("Razas","index");?>">Raza</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Consulta</a>

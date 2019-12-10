@@ -34,11 +34,11 @@ if(isset($_SESSION['user'])){
             <?php
                 }
             ?>
-            <form class="" name="addUser" method="post" action="<?php echo $helper->url("Administrador","crear");?>" >
+            <form class="" name="addUser" method="post" action="<?php echo $helper->url("Administrador","crear");?>" onsubmit="return validationRegisterUserForm();">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="identificacion">Identifiacion</label>
-                        <input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="" required>
+                        <label for="identificacion">Identificacion</label>
+                        <input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="" onkeypress="return solonumeros(event);" onpaste="return false" required>
                     </div>                    
                     <div class="col-md-4 mb-3">
                         <label for="nombre">Nombre</label>
@@ -68,7 +68,7 @@ if(isset($_SESSION['user'])){
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="telefono">Telefono</label>
-                        <input type="text" class="form-control" id="telefono" name="telefono" placeholder="" required>
+                        <input type="text" class="form-control" id="telefono" name="telefono" placeholder="" onkeypress="return solonumeros(event);" onpaste="return false;" required>
                         <div class="invalid-feedback">
                             Debe llenar este campo.
                         </div>

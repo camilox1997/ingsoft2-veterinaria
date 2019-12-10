@@ -1,5 +1,5 @@
 <?php
-class Mascota extends ControladorBase{
+class Mascota extends EntidadBase{
     private $id, $nombre, $id_raza, $sexo, $peso, $edad, $fecha_nacimiento, $responsable;
     private $table;
 
@@ -73,7 +73,7 @@ class Mascota extends ControladorBase{
     }
 
     public function save(){
-        $query="INSERT INTO Mascota(nombre, id_raza, sexo, peso, edad, fecha_nacimiento, responsable)"
+        $query="INSERT INTO Mascota(nombre_mascota, id_raza, sexo, peso, edad, fecha_nacimiento, responsable)"
                             . "VALUES ('"
                             . $this->nombre."','"
                             . $this->id_raza."','"
@@ -81,20 +81,16 @@ class Mascota extends ControladorBase{
                             . $this->peso."','"
                             . $this->edad."','"
                             . $this->fecha_nacimiento."','"
-                            . $this->responsable."','"
+                            . $this->responsable."'"
                             . ");";
         $save=$this->db()->query($query);
         return $save;
     }
 
     public function update(){
-        $query="UPDATE Mascota SET nombre=$this->nombre,
-                                   id_raza=$this->id_raza,
-                                   sexo=$this->sexo,
-                                   peso=$this->peso,
-                                   edad=$this->edad,
-                                   fecha_nacimiento=$this->fecha_nacimiento,
-                                   responsable=$this->responsable WHERE id=$this->id";
+        $query="UPDATE Mascota SET nombre_mascota='$this->nombre',
+                                   sexo='$this->sexo',
+                                   peso=$this->peso WHERE id=$this->id";
         $update=$this->db()->query($query);
         return $update;
     }

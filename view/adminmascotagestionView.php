@@ -9,10 +9,10 @@ if(isset($_SESSION['user'])){
     } else {
         $aticulo_x_pagina=3;
         $paginas = 0;
-        if(is_object($users)){
+        if(is_object($pets)){
             $paginas = 0.1;
         } else{
-            $paginas = count($allusers)/$aticulo_x_pagina;    
+            $paginas = count($allmascot)/$aticulo_x_pagina;    
         }
         $paginas = ceil($paginas);
 ?>
@@ -26,13 +26,12 @@ if(isset($_SESSION['user'])){
             <div class="row">
                 <?php require_once 'view/module/admin/sidemenubar.php'?>
             </div>
-            <?php require_once 'view/module/user/gestion/topTitleUserGestion.php'?>
+            <?php require_once 'view/module/pets/gestion/topTitlePetsGestion.php'?>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-                    <li class="breadcrumb-item"><a href="<?php echo $helper->url("Administrador","getUsers") ?>">Listar</a></li>
-                    <li class="breadcrumb-item"><a href="<?php echo $helper->url("Administrador","crearIndex") ?>">Registrar nuevo</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mascota</li>
+                    <li class="breadcrumb-item"><a href="<?php echo $helper->url("Mascota","getMascotas") ?>">Listar</a></li>
                 </ol>
             </nav>
             <style>
@@ -43,7 +42,7 @@ if(isset($_SESSION['user'])){
                     color: white;
                 }
             </style>
-            <form class="" method="post" action="<?php echo $helper->url("Administrador","getUserConsultPagination");?>&page=0&attribute=identificacion">
+            <form class="" method="post" action="<?php echo $helper->url("Mascota","getMascotaConsultPagination");?>&page=0&attribute=identificacion">
                 <div class="input-group input-group mb-3">
                     <div class="input-group-prepend">
                         <input type="submit" class="btn btn-primary" value="Buscar">
@@ -55,33 +54,41 @@ if(isset($_SESSION['user'])){
             <table class="table">
                 <thead class="thead">
                     <tr>
-                        <th scope="col">Identificacion</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Direccion</th>
-                        <th scope="col">Telefono</th>
+                        <th scope="col">Raza</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Identificacion</th>
+                        <th scope="col">responsable</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if(is_array($users)){?>
-                        <?php foreach($users as $user){?>
+                    <?php if(is_array($pets)){?>
+                        <?php foreach($pets as $pet){?>
                             <tr>    
-                                <td><?php echo $user->identificacion?></td>
-                                <td><?php echo $user->nombre?></td>
-                                <td><?php echo $user->apellido?></td>
-                                <td><?php echo $user->direccion?></td>
-                                <td><?php echo $user->telefono?></td>
-                                <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Administrador","editarIndex");?>&id=<?php echo $user->identificacion;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Administrador","borrar");?>&id=<?php echo $user->identificacion?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a> <a href="<?php echo $helper->url("Mascota","registrarIndex");?>&identificacion=<?php echo $user->identificacion?>"> <button class="btn btn-success" style="color: white"> <ion-icon name="add-circle-outline" style="color: white !important;"></ion-icon></button> </a></td>
+                                <td><?php echo $pet->id?></td>
+                                <td><?php echo $pet->nombre_mascota?></td>
+                                <td><?php echo $pet->id_raza?></td>
+                                <td><?php echo $pet->sexo?></td>
+                                <td><?php echo $pet->peso?></td>
+                                <td><?php echo $pet->edad?></td>
+                                <td><?php echo $pet->responsable?>
+                                <td><?php echo $pet->nombre?></td>
+                                <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pet->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pet->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a></td>
                         <?php } ?>
-                    <?php } else if(is_object($users)) {?>
-                        <tr>    
-                            <td><?php echo $users->identificacion?></td>
-                            <td><?php echo $users->nombre?></td>
-                            <td><?php echo $users->apellido?></td>
-                            <td><?php echo $users->direccion?></td>
-                            <td><?php echo $users->telefono?></td>
-                            <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Administrador","editarIndex");?>&id=<?php echo $user->identificacion;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Administrador","borrar");?>&id=<?php echo $user->identificacion?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a> <a href="<?php echo $helper->url("Mascota","registrarMascota");?>&identificacion=<?php echo $user->identificacion?>"> <button class="btn btn-success" style="color: white"> <ion-icon name="add-circle-outline" style="color: white !important;"></ion-icon></button> </a></td>
+                    <?php } else if(is_object($pets)) {?>
+                            <tr>    
+                                <td><?php echo $pets->id?></td>
+                                <td><?php echo $pets->nombre_mascota?></td>
+                                <td><?php echo $pets->id_raza?></td>
+                                <td><?php echo $pets->sexo?></td>
+                                <td><?php echo $pets->peso?></td>
+                                <td><?php echo $pets->edad?></td>
+                                <td><?php echo $pets->responsable?></td>
+                            <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pets->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pets->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a></td>
                     <?php } ?>
                 </tbody>      
             </table>

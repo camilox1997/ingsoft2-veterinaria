@@ -30,10 +30,10 @@ if(isset($_SESSION['user'])){
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="identificacion">Identifiacion</label>
-                    <input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="" value="<?php echo $useredit->identificacion?>" disabled>
+                    <input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="" value="<?php echo $useredit->identificacion?>" onkeypress="return solonumeros(event);" onpaste="return false" disabled>
                 </div>
             </div>
-            <form class="" method="post" action="<?php echo $helper->url("Administrador","editar");?>&id=<?php echo $useredit->identificacion;?>">
+            <form class="" method="post" action="<?php echo $helper->url("Administrador","editar");?>&id=<?php echo $useredit->identificacion;?>" onsubmit="return validationEditUserForm();">
                 <div class="row">
                     
                     <div class="col-md-4 mb-3">

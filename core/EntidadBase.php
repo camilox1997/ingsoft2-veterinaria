@@ -19,7 +19,7 @@ class EntidadBase{
     }
 
     public function getAll(){
-        $query = $this->db->query("SELECT * FROM $this->table ORDER BY id DESC");
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY id ASC");
         $resultSet = array();
         while($row = $query->fetch(PDO::FETCH_OBJ)){
             $resultSet[] = $row;
@@ -43,6 +43,32 @@ class EntidadBase{
             $cont = ($page-1)*3;
         }
         $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion ASC LIMIT $cont,3"); 
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+        return $resultSet;
+    }
+
+    public function getAllPagination($page){
+        $cont = 0;
+        if($page!=0){
+            $cont = ($page-1)*3;
+        }
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY id ASC LIMIT $cont,3"); 
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+        return $resultSet;
+    }
+
+    public function getUsersConsultPagination($page,$dato,$attribute){
+        $cont = 0;
+        if($page!=0){
+            $cont = ($page-1)*3;
+        }
+        $query = $this->db->query("SELECT * FROM $this->table WHERE $attribute LIKE '%.$dato.%' ORDER BY identificacion ASC LIMIT $cont,3"); 
         $resultSet = array();
         while($row = $query->fetch(PDO::FETCH_OBJ)){
             $resultSet[] = $row;
@@ -91,6 +117,19 @@ class EntidadBase{
     public function deleteBy($column, $value){
         $query=$this->query("DELETE FROM $this->table WHERE $column='$value'");
         return $query;
+    }
+
+    public function getMascotasPagination($page){
+        $cont = 0;
+        if($page!=0){
+            $cont = ($page-1)*3;
+        }
+        $query = $this->db->query("SELECT * FROM $this->table,Usuario WHERE $this->table.responsable = Usuario.identificacion ORDER BY id ASC LIMIT $cont,3"); 
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+        return $resultSet;
     }
 
 }
