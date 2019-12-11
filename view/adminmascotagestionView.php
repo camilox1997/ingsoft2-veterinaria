@@ -77,7 +77,7 @@ if(isset($_SESSION['user'])){
                                 <td><?php echo $pet->edad?></td>
                                 <td><?php echo $pet->responsable?>
                                 <td><?php echo $pet->nombre?></td>
-                                <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pet->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pet->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a></td>
+                                <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pet->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pet->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a> <a href="<?php echo $helper->url("Consulta","registrarIndex");?>&id=<?php echo $pet->id?>&cliente=<?php echo $pet->responsable?>"> <button class="btn btn-success" style="color: white"> <ion-icon name="add-circle-outline" style="color: white !important;"></ion-icon></button> </a></td>
                         <?php } ?>
                     <?php } else if(is_object($pets)) {?>
                             <tr>    
@@ -88,7 +88,8 @@ if(isset($_SESSION['user'])){
                                 <td><?php echo $pets->peso?></td>
                                 <td><?php echo $pets->edad?></td>
                                 <td><?php echo $pets->responsable?></td>
-                            <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pets->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pets->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a></td>
+                                <td><?php echo $pets->nombre?></td>
+                            <td><a class="btn btn-primary" style="color: white" href="<?php echo $helper->url("Mascota","editarIndex");?>&id=<?php echo $pets->id;?>"> <ion-icon name="create" style="color: white !important"></ion-icon></a> <a href="<?php echo $helper->url("Mascota","borrar");?>&id=<?php echo $pets->id?>"> <button class="btn btn-danger" style="color: white" onclick="return deleteOption()"> <ion-icon name="trash" style="color: white !important;"></ion-icon></button> </a> <a href="<?php echo $helper->url("Consulta","registrarIndex");?>&id=<?php echo $pets->id?>&cliente=<?php echo $pets->responsable?>"> <button class="btn btn-success" style="color: white"> <ion-icon name="add-circle-outline" style="color: white !important;"></ion-icon></button> </a> </td>
                     <?php } ?>
                 </tbody>      
             </table>

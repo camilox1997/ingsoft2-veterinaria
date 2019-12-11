@@ -195,14 +195,10 @@ function validationEditPetsForm(){
     }else if (peso ===""){
         alert("Todos los campos son obligatorios");
         return false;
-    } else if (peso.length > 3){
-        alert("El nombre es demaciado largo");
-        return false;
-    } else if (nombre.length < 0){
-        alert("El nombre es demaciado corto");
+    } else if (isNaN(peso)) {
+        alert("El peso ingresado no es un numero");
         return false;
     }
-}
 
 function validationRegisterPetsForm(){
     var identificacion_propietario, nombre_mascota, idraza, sexo, peso, fecha_nacimiento;
@@ -230,14 +226,8 @@ function validationRegisterPetsForm(){
     } else if (nombre_mascota.length < 3){
         alert("El nombre es demaciado corto");
         return false;
-    } else if (peso.length > 10){
-        alert("El telefono es demaciado largo");
-        return false;
-    }else if (peso.length < 8){
-        alert("El telefono es demaciado corto");
-        return false;
-    } else if (isNaN(peso)) {
-        alert("El telefono ingresado no es un numero");
+    }else if (isNaN(peso)) {
+        alert("El peso ingresado no es un numero");
         return false;
     }
 

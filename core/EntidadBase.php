@@ -28,6 +28,16 @@ class EntidadBase{
         return $resultSet;
     }
 
+    public function getAllConsult(){
+        $query = $this->db->query("SELECT * FROM $this->table ORDER BY id_consulta ASC");
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+
+        return $resultSet;
+    }
+
     public function getAllUsers(){
         $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion ASC"); 
         $resultSet = array();
@@ -56,6 +66,19 @@ class EntidadBase{
             $cont = ($page-1)*3;
         }
         $query = $this->db->query("SELECT * FROM $this->table ORDER BY id ASC LIMIT $cont,3"); 
+        $resultSet = array();
+        while($row = $query->fetch(PDO::FETCH_OBJ)){
+            $resultSet[] = $row;
+        }
+        return $resultSet;
+    }
+
+    public function getConsultSimplePagination($page){
+        $cont = 0;
+        if($page!=0){
+            $cont = ($page-1)*3;
+        }
+        $query = $this->db->query("SELECT $this->table.id_consulta,$this->table.id_mascota,Mascota.nombre_mascota,$this->table.id_cliente,Usuario.nombre FROM $this->table,Mascota,Usuario WHERE $this->table.id_mascota = Mascota.id && $this->table.id_cliente=Usuario.identificacion ORDER BY id_consulta ASC LIMIT $cont,3"); 
         $resultSet = array();
         while($row = $query->fetch(PDO::FETCH_OBJ)){
             $resultSet[] = $row;

@@ -37,13 +37,13 @@
                 <a class="nav-link" href="<?php echo $helper->url("Razas","index");?>">Raza</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Consulta</a>
+                <a class="nav-link" href="<?php echo $helper->url("Consulta","getConsultas");?>" >Consulta</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo $helper->url("Diagnostico","index");?>" >Diagnostico</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Producto</a>
+                <a class="nav-link" href="<?php echo $helper->url("Producto","getProductos");?>" >Producto</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Facturacion</a>

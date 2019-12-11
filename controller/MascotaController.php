@@ -98,7 +98,7 @@ class MascotaController extends ControladorBase{
             $raza=new Raza();
             $allraza=$raza->getAll();
             $pagina = 0;
-            if($_GET["page"] && !empty($_GET['page']))$pagina = $_GET['page'];
+            if(isset($_GET["page"]) && !empty($_GET['page']))$pagina = $_GET['page'];
 
             $raz=$raza->getAllPagination($pagina);
             $this->view("adminselectrazamascotagestion", array(
@@ -180,7 +180,7 @@ class MascotaController extends ControladorBase{
                 $this->redirect("Administrador", "index");
             }
         }else {
-            $this->redirect("Administrador", "getMascotas");
+            $this->redirect("Mascota", "getMascotas");
         }
         
     }
