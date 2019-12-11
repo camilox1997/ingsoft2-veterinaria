@@ -205,50 +205,83 @@ function validationEditPetsForm(){
 }
 
 function validationRegisterPetsForm(){
-        if(identificacion==="" || nombre ==="" || apellido==="" || direccion==="" || telefono==="" || username==="" || pass ===""){
+    var identificacion_propietario, nombre_mascota, idraza, sexo, peso, fecha_nacimiento;
+    identificacion_propietario = document.getElementById("identificacion_propietario").value
+    nombre_mascota = document.getElementById("nombre_mascota").value
+    idraza = document.getElementById("idraza").value
+    sexo = document.getElementById("sexo").value
+    peso = document.getElementById("peso").value
+    fecha_nacimiento = document.getElementById("fecha_nacimiento").value
+    if(identificacion_propietario=="" || nombre_mascota =="" || idraza=="" || sexo=="" || peso=="" || fecha_nacimiento==null || fecha_nacimiento == ""){
         alert("Todos los campos son obligatorios");
         return false;
-    } else if(identificacion.length > 12){
+    } else if(identificacion_propietario.length > 12){
         alert("La identificacion debe tener maximo 12 caracteres");
         return false;
-    } else if (identificacion.length < 8) { 
+    } else if (identificacion_propietario.length < 8) { 
         alert("La identificacion debe tener minimo 8 caracteres");
         return false;
-    } else if (isNaN(identificacion)) {
+    } else if (isNaN(identificacion_propietario)) {
         alert("La identificacion ingresada no es un numero");
         return false;
-    } else if (nombre.length > 31){
+    } else if (nombre_mascota.length > 31){
         alert("El nombre es demaciado largo");
         return false;
-    } else if (nombre.length < 3){
+    } else if (nombre_mascota.length < 3){
         alert("El nombre es demaciado corto");
         return false;
-    } else if (apellido.length > 31){
-        alert("El apellido es demaciado largo");
-        return false;
-    } else if (apellido.length < 3){
-        alert("El apellido es demaciado corto");
-        return false;
-    } else if (direccion.length > 50){
-        alert("La dirrecion es demaciada larga");
-        return false;
-    } else if (direccion.length < 15){
-        alert("La direccion es demaciada corta");
-        return false;
-    } else if (telefono.length > 10){
+    } else if (peso.length > 10){
         alert("El telefono es demaciado largo");
         return false;
-    }else if (telefono.length < 8){
+    }else if (peso.length < 8){
         alert("El telefono es demaciado corto");
         return false;
-    } else if (isNaN(telefono)) {
+    } else if (isNaN(peso)) {
         alert("El telefono ingresado no es un numero");
         return false;
-    } else if (username.length > 15 || pass.length > 15){
-        alert("El nombre de usuario y la contraseña solo deben tener maximo 15 caracteres");
+    }
+
+    var hoy             = new Date();
+    var fechaFormulario = document.getElementById("fecha_nacimiento").value
+
+    // Comparamos solo las fechas => no las horas!!
+    hoy.setHours(0,0,0,0);  // Lo iniciamos a 00:00 horas
+
+    if (hoy < fechaFormulario) {
+        alert("La fecha no puede ser superior a la fecha de hoy");
         return false;
-    } else if (username.length < 8 || pass.length < 8){
-        alert("El nombre de usuario y la contraseña solo deben tener minimo 8 caracteres");
+    }
+}
+
+
+function validationRegisterDiagnosticForm(){
+    var nombre;
+    nombre = document.getElementById("nombre_diagnostico").value;
+    
+    if(nombre ===""){
+        alert("Todos los campos son obligatorios");
+        return false;
+    } else if(nombre.length > 20){
+        alert("La identificacion debe tener maximo 20 caracteres");
+        return false;
+    } else if (nombre.length < 3) { 
+        alert("La identificacion debe tener minimo 3 caracteres");
+        return false;
+    }
+}
+
+function validationEditDiagnosticForm(){
+    var nombre;
+    nombre = document.getElementById("nombre_diagnostico").value;
+    
+    if(nombre ===""){
+        alert("Todos los campos son obligatorios");
+        return false;
+    } else if(nombre.length > 20){
+        alert("La identificacion debe tener maximo 20 caracteres");
+        return false;
+    } else if (nombre.length < 3) { 
+        alert("La identificacion debe tener minimo 3 caracteres");
         return false;
     }
 }

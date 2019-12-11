@@ -42,7 +42,7 @@ class EntidadBase{
         if($page!=0){
             $cont = ($page-1)*3;
         }
-        $query = $this->db->query("SELECT * FROM $this->table ORDER BY identificacion ASC LIMIT $cont,3"); 
+        $query = $this->db->query("SELECT * FROM $this->table WHERE $this->table.tipo != 'admin' ORDER BY identificacion ASC LIMIT $cont,3"); 
         $resultSet = array();
         while($row = $query->fetch(PDO::FETCH_OBJ)){
             $resultSet[] = $row;

@@ -109,6 +109,23 @@ if(isset($_SESSION['user'])){
                     ?>" ><a class="page-link" href="<?php echo $helper->url("Administrador","getUserPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET["page"]+1; else echo 2;?>">Siguiente</a></li>
                 </ul>
             </nav>
+            <?php
+                if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
+                    if($_GET['confirm'] == "yesregister"){ ?>
+                        <div class="alert alert-success" role="alert">
+                            Registro exitoso!!!
+                        </div>
+                    <?php } else if ($_GET['confirm'] == "yesedit"){ ?>
+                        <div class="alert alert-info" role="alert">
+                            Actializacion exitosa!!!
+                        </div>
+                    <?php } else if ($_GET['confirm'] == "yesdelete"){ ?>
+                        <div class="alert alert-danger" role="alert">
+                            Eliminacion exitosa!!!
+                        </div>
+                    <?php }
+                } 
+            ?>
         <?php require_once 'view/module/endBody.php'?>
     </body>
 </html>

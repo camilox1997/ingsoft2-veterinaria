@@ -40,7 +40,7 @@
                 <a class="nav-link">Consulta</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link">Diagnostico</a>
+                <a class="nav-link" href="<?php echo $helper->url("Diagnostico","index");?>" >Diagnostico</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link">Producto</a>

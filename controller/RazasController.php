@@ -27,7 +27,7 @@ class RazasController extends ControladorBase{
 
     public function getRazaConsultPagination(){
         if(isset($_POST['search']) && $_POST['search'] != ''){
-            $columna = "nombre";
+            $columna = "id";
             $raza=new Raza();
             $razas=$raza->getBy($columna,$_POST['search']);
             $this->view("adminrazagestion", array(
@@ -62,7 +62,7 @@ class RazasController extends ControladorBase{
                 $raza->setTipoMascota($tipoMascota);
                 $save = $raza->save();
                 if($save->rowCount() > 0){
-                    $this->redirect("Razas", "index");
+                    $this->redirect("Razas", "index&confirm=yesregister");
                 } else {
                     $this->redirect("Administrador", "index");
                 }
@@ -93,7 +93,7 @@ class RazasController extends ControladorBase{
             $update = $raza->update();
 
             if($update->rowCount() > 0 ){
-                $this->redirect("Razas", "index");
+                $this->redirect("Razas", "index&confirm=yesedit");
             } else {
                 $this->redirect("Administrador", "index");
             }
@@ -120,7 +120,7 @@ class RazasController extends ControladorBase{
             $delete = $raza->deleteById($id);
 
             if ($delete->rowCount() > 0){
-                $this->redirect("Razas", "index");
+                $this->redirect("Razas", "index&confirm=yesdelete");
             } else {
                 $this->redirect("Administrador", "index");
             }

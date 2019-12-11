@@ -102,7 +102,7 @@ if(isset($_SESSION['user'])){
                     
                     <div class="col-md-2 mb-2">
                         <label for="username">Fecha nacimiento</label>
-                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="" required <?php echo isset($_GET['condicion'])? $_GET['condicion']=="ok"? '':'disabled' : 'disabled' ?> >
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" min="2000-01-01" placeholder="" required <?php echo isset($_GET['condicion'])? $_GET['condicion']=="ok"? '':'disabled' : 'disabled' ?> >
                         <div class="invalid-feedback">
                             Debe llenar este campo.
                         </div>

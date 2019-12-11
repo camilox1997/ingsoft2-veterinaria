@@ -100,11 +100,11 @@ if(isset($_SESSION['user'])){
                     } else {
                         echo $paginas<=1? 'disable' : '';
                     }
-                    ?>"><a class="page-link" href="<?php echo $helper->url("Administrador","getUserPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET['page']-1; else echo 1?>">Anterior</a></li>
+                    ?>"><a class="page-link" href="<?php echo $helper->url("Mascota","getMascotaPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET['page']-1; else echo 1?>">Anterior</a></li>
 
                     <?php for($i=0;$i<$paginas;$i++) { ?>
                     
-                    <li class="page-item <?php echo $_GET['page']==$i+1 ? 'active' : ''?>" ><a class="page-link" href="<?php echo $helper->url("Administrador","getUserPagination");?>&page=<?php echo $i+1?>"><?php echo $i+1?></a></li>
+                    <li class="page-item <?php echo $_GET['page']==$i+1 ? 'active' : ''?>" ><a class="page-link" href="<?php echo $helper->url("Mascota","getMascotaPagination");?>&page=<?php echo $i+1?>"><?php echo $i+1?></a></li>
 
                     <?php } ?>
                     <li class="page-item <?php 
@@ -113,9 +113,28 @@ if(isset($_SESSION['user'])){
                     } else {
                         echo $paginas>=1? '' : 'disabled';
                     }
-                    ?>" ><a class="page-link" href="<?php echo $helper->url("Administrador","getUserPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET["page"]+1; else echo 2;?>">Siguiente</a></li>
+                    ?>" ><a class="page-link" href="<?php echo $helper->url("Mascota","getMascotaPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET["page"]+1; else echo 2;?>">Siguiente</a></li>
                 </ul>
             </nav>
+
+            <?php
+                if(isset($_GET['confirm']) && !empty($_GET['confirm'])){
+                    if($_GET['confirm'] == "yesregister"){ ?>
+                        <div class="alert alert-success" role="alert">
+                            Registro exitoso!!!
+                        </div>
+                    <?php } else if ($_GET['confirm'] == "yesedit"){ ?>
+                        <div class="alert alert-info" role="alert">
+                            Actializacion exitosa!!!
+                        </div>
+                    <?php } else if ($_GET['confirm'] == "yesdelete"){ ?>
+                        <div class="alert alert-danger" role="alert">
+                            Eliminacion exitosa!!!
+                        </div>
+                    <?php }
+                } 
+            ?>
+
         <?php require_once 'view/module/endBody.php'?>
     </body>
 </html>

@@ -37,7 +37,7 @@ if(isset($_SESSION['user'])){
                     
                     <div class="col-md-4 mb-3">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre_mascota" name="nombre_mascota" placeholder="" value="<?php echo $petsedit->nombre_mascota?>" required>
+                        <input type="text" class="form-control" id="nombre_mascota" name="nombre_mascota" placeholder="" value="<?php echo $petsedit->nombre_mascota?>" required onkeypress="return sololetras(event);">
                         <div class="invalid-feedback">
                             Debe llenar este campo.
                         </div>

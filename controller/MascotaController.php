@@ -69,7 +69,7 @@ class MascotaController extends ControladorBase{
             $mascota->setEdad($this->CalculaEdad($fecha_nacimiento));
             $save = $mascota->save();
             if($save->rowCount() > 0){
-                $this->redirect("Mascota", "getMascotas");
+                $this->redirect("Mascota", "getMascotas&confirm=yesregister");
             } else {
                 $this->redirect("Administrador", "index");
             }  
@@ -97,7 +97,33 @@ class MascotaController extends ControladorBase{
         if(isset($_GET["condition"]) == "ok"){
             $raza=new Raza();
             $allraza=$raza->getAll();
-            $raz=$raza->getAllPagination(0);
+            $pagina = 0;
+            if($_GET["page"] && !empty($_GET['page']))$pagina = $_GET['page'];
+
+            $raz=$raza->getAllPagination($pagina);
+            $this->view("adminselectrazamascotagestion", array(
+                "allraza"=>$allraza,
+                "raza"=>$raz
+            ));
+        }
+    }
+
+    public function getRazaConsultPagination(){
+        if(isset($_POST['search']) && $_POST['search'] != ''){
+            $columna = "id";
+            $raza=new Raza();
+            $razas=$raza->getBy($columna,$_POST['search']);
+            $this->view("adminselectrazamascotagestion", array(
+                "allraza"=>$razas,
+                "raza"=>$razas
+            ));
+        } else {
+            $raza=new Raza();
+            $allraza=$raza->getAll();
+            $pagina = 0;
+            if($_GET["page"] && !empty($_GET['page']))$pagina = $_GET['page'];
+
+            $raz=$raza->getAllPagination($pagina);
             $this->view("adminselectrazamascotagestion", array(
                 "allraza"=>$allraza,
                 "raza"=>$raz
@@ -122,7 +148,7 @@ class MascotaController extends ControladorBase{
             $update = $mascota->update();
 
             if($update->rowCount() > 0 ){
-                $this->redirect("Mascota", "getMascotas");
+                $this->redirect("Mascota", "getMascotas&confirm=yesedit");
             } else {
                 $this->redirect("Administrador", "index");
             }
@@ -149,7 +175,7 @@ class MascotaController extends ControladorBase{
             $delete = $mascota->deleteById($id);
 
             if ($delete->rowCount() > 0){
-                $this->redirect("Mascota", "getMascotas");
+                $this->redirect("Mascota", "getMascotas&confirm=yesdelete");
             } else {
                 $this->redirect("Administrador", "index");
             }

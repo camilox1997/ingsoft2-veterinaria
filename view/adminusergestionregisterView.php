@@ -42,7 +42,7 @@ if(isset($_SESSION['user'])){
                     </div>                    
                     <div class="col-md-4 mb-3">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="" required onkeypress="return sololetras(event);">
                         <div class="invalid-feedback">
                             Debe llenar este campo.
                         </div>
@@ -52,7 +52,7 @@ if(isset($_SESSION['user'])){
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required>
+                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="" required onkeypress="return sololetras(event);">
                         <div class="invalid-feedback">
                             Debe llenar este campo.
                         </div>

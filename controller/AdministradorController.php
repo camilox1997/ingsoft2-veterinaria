@@ -85,7 +85,7 @@ class AdministradorController extends ControladorBase{
                     $save = $usuario->save();
 
                     if($save->rowCount() > 0){
-                        $this->redirect("Administrador", "getUsers");
+                        $this->redirect("Administrador", "getUsers&confirm=yesregister");
                     } else {
                         $this->redirect("Administrador", "index");
                     }
@@ -127,8 +127,8 @@ class AdministradorController extends ControladorBase{
 
             $update = $usuario->update();
 
-            if($update->rowCount() > 0 ){
-                $this->redirect("Administrador", "getUsers");
+            if($update->rowCount() > 0 ) {
+                $this->redirect("Administrador", "getUsers&confirm=yesedit");
             } else {
                 $this->redirect("Administrador", "index");
             }
@@ -155,7 +155,7 @@ class AdministradorController extends ControladorBase{
             $delete = $usuario->deleteByIdentified($identificacion);
 
             if ($delete->rowCount() > 0){
-                $this->redirect("Administrador", "getUsers");
+                $this->redirect("Administrador", "getUsers&confirm=yesdelete");
             } else {
                 $this->redirect("Administrador", "index");
             }

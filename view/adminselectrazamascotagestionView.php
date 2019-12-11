@@ -41,7 +41,7 @@ if(isset($_SESSION['user'])){
                     color: white;
                 }
             </style>
-            <form class="" method="post" action="<?php echo $helper->url("Razas","getRazaConsultPagination");?>&page=0&attribute=identificacion">
+            <form class="" method="post" action="<?php echo $helper->url("Mascota","getRazaConsultPagination");?>&page=0&attribute=identificacion">
                 <div class="input-group input-group mb-3">
                     <div class="input-group-prepend">
                         <input type="submit" class="btn btn-primary" value="Buscar">
@@ -85,11 +85,11 @@ if(isset($_SESSION['user'])){
                     } else {
                         echo $paginas<=1? 'disable' : '';
                     }
-                    ?>"><a class="page-link" href="<?php echo $helper->url("Razas","getRazaPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET['page']-1; else echo 1?>">Anterior</a></li>
+                    ?>"><a class="page-link" href="<?php echo $helper->url("Mascota","buscarRaza");?>&page=<?php if(isset($_GET["page"])) echo $_GET['page']-1; else echo 1?>&condition=ok">Anterior</a></li>
 
                     <?php for($i=0;$i<$paginas;$i++) { ?>
                     
-                    <li class="page-item <?php echo $_GET['page']==$i+1 ? 'active' : ''?>" ><a class="page-link" href="<?php echo $helper->url("Razas","getRazaPagination");?>&page=<?php echo $i+1?>"><?php echo $i+1?></a></li>
+                    <li class="page-item <?php echo $_GET['page']==$i+1 ? 'active' : ''?>" ><a class="page-link" href="<?php echo $helper->url("Mascota","buscarRaza");?>&page=<?php echo $i+1?>&condition=ok"><?php echo $i+1?></a></li>
 
                     <?php } ?>
                     <li class="page-item <?php 
@@ -98,7 +98,7 @@ if(isset($_SESSION['user'])){
                     } else {
                         echo $paginas>=1? '' : 'disabled';
                     }
-                    ?>" ><a class="page-link" href="<?php echo $helper->url("Razas","getRazaPagination");?>&page=<?php if(isset($_GET["page"])) echo $_GET["page"]+1; else echo 2;?>">Siguiente</a></li>
+                    ?>" ><a class="page-link" href="<?php echo $helper->url("Mascota","buscarRaza");?>&page=<?php if(isset($_GET["page"])) echo $_GET["page"]+1; else echo 2;?>&condition=ok">Siguiente</a></li>
                 </ul>
             </nav>
         <?php require_once 'view/module/endBody.php'?>
